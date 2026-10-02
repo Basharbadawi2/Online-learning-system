@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Online learning system", "Online learning system\Online learning system.csproj", "{50802FBC-DCD0-444E-816F-1CEBC1D73038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLearningSystem.Web", "OnlineLearningSystem.Web\OnlineLearningSystem.Web.csproj", "{568DA278-7345-478E-B140-BEB0DF9FEB21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50802FBC-DCD0-444E-816F-1CEBC1D73038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50802FBC-DCD0-444E-816F-1CEBC1D73038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50802FBC-DCD0-444E-816F-1CEBC1D73038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50802FBC-DCD0-444E-816F-1CEBC1D73038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568DA278-7345-478E-B140-BEB0DF9FEB21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568DA278-7345-478E-B140-BEB0DF9FEB21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568DA278-7345-478E-B140-BEB0DF9FEB21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568DA278-7345-478E-B140-BEB0DF9FEB21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D0707B2-345C-4713-85E8-B71FE36E0CDA}
+	EndGlobalSection
+EndGlobal

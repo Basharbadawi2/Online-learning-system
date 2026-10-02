@@ -1,0 +1,199 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Courses.EditModel
+
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<div class="container py-5">
+
+    
+    <!-- Header -->
+    <div class="mb-5">
+
+        <a asp-page="/Instructor/Courses"
+           class="text-decoration-none">
+            ← Back to My Courses
+        </a>
+
+        <h1 class="fw-bold mt-3 mb-2">
+            Edit Course
+        </h1>
+
+        <p class="text-muted">
+            Update your course information and settings.
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="post">
+
+                        <input type="hidden"
+                               asp-for="CourseId" />
+
+                        <!-- Title -->
+                        <div class="mb-4">
+
+                            <label asp-for="Course.Title"
+                                   class="form-label fw-semibold">
+                                Course Title
+                            </label>
+
+                            <input asp-for="Course.Title"
+                                   class="form-control form-control-lg" />
+
+                            <span asp-validation-for="Course.Title"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+
+                            <label asp-for="Course.Description"
+                                   class="form-label fw-semibold">
+                                Description
+                            </label>
+
+                            <textarea asp-for="Course.Description"
+                                      class="form-control"
+                                      rows="5">
+                        </textarea>
+
+                            <span asp-validation-for="Course.Description"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+
+                            <label asp-for="Course.Price"
+                                   class="form-label fw-semibold">
+                                Course Price
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    EGP
+                                </span>
+
+                                <input asp-for="Course.Price"
+                                       class="form-control"
+                                       type="number"
+                                       step="0.01"
+                                       min="0" />
+
+                            </div>
+
+                            <span asp-validation-for="Course.Price"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- IDs -->
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label asp-for="Course.InstructorId"
+                                       class="form-label fw-semibold">
+                                    Instructor ID
+                                </label>
+
+                                <input asp-for="Course.InstructorId"
+                                       class="form-control"
+                                       type="number"
+                                       min="1" />
+
+                                <span asp-validation-for="Course.InstructorId"
+                                      class="text-danger">
+                                </span>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label asp-for="Course.CategoryId"
+                                       class="form-label fw-semibold">
+                                    Category ID
+                                </label>
+
+                                <input asp-for="Course.CategoryId"
+                                       class="form-control"
+                                       type="number"
+                                       min="1" />
+
+                                <span asp-validation-for="Course.CategoryId"
+                                      class="text-danger">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Published -->
+                        <div class="form-check form-switch my-4">
+
+                            <input asp-for="Course.IsPublished"
+                                   class="form-check-input"
+                                   role="switch" />
+
+                            <label asp-for="Course.IsPublished"
+                                   class="form-check-label fw-semibold">
+                                Published
+                            </label>
+
+                            <div>
+                                <small class="text-muted">
+                                    Published courses are visible to students.
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <!-- Actions -->
+                        <div class="d-flex gap-3">
+
+                            <a asp-page="/Instructor/Courses"
+                               class="btn btn-outline-secondary px-4">
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

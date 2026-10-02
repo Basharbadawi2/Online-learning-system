@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "OnlineLearningSystem.Web/1.0.0": {
+        "runtime": {
+          "OnlineLearningSystem.Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OnlineLearningSystem.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

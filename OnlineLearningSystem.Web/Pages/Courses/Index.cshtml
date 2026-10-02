@@ -1,0 +1,237 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Courses.IndexModel
+
+<div class="courses-page">
+
+    
+    <!-- Page Header -->
+    <div class="courses-header">
+        <div>
+            <span class="courses-eyebrow">LEARN • GROW • SUCCEED</span>
+            <h1>Explore Courses</h1>
+            <p>Learn new skills and advance your career.</p>
+        </div>
+
+        <a asp-page="/Courses/Create" class="btn-primary">
+            <span>+</span> Create Course
+        </a>
+    </div>
+
+    <div class="courses-layout">
+
+        <!-- Sidebar -->
+        <aside class="course-filters">
+
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <a href="#">Clear all</a>
+            </div>
+
+            <div class="filter-section">
+                <h4>Rating</h4>
+
+                <label>
+                    <input type="radio" name="rating">
+                    <span>⭐⭐⭐⭐⭐</span>
+                    <span>4.5 & up</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="rating">
+                    <span>⭐⭐⭐⭐</span>
+                    <span>4.0 & up</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="rating">
+                    <span>⭐⭐⭐</span>
+                    <span>3.0 & up</span>
+                </label>
+            </div>
+
+            <div class="filter-section">
+                <h4>Course Level</h4>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Beginner</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Intermediate</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Advanced</span>
+                </label>
+            </div>
+
+            <div class="filter-section">
+                <h4>
+                    <a asp-page="/Categories/Index">Categories</a>
+                </h4>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Programming</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Web Development</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Database</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>AI & Machine Learning</span>
+                </label>
+            </div>
+
+        </aside>
+
+        <!-- Courses -->
+        <main class="courses-content">
+
+            <!-- Toolbar -->
+            <div class="courses-toolbar">
+
+                <div>
+                    <strong>@Model.Courses.Count</strong>
+                    <span>courses available</span>
+                </div>
+
+                <select aria-label="Sort courses">
+                    <option>Most Popular</option>
+                    <option>Newest</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                </select>
+
+            </div>
+
+            <!-- Course Grid -->
+            <div class="course-grid">
+
+                @foreach (var course in Model.Courses)
+                {
+                    <article class="course-card">
+
+                        <!-- Course Image -->
+                        <div class="course-image">
+
+                            <div class="course-badge">
+                                Bestseller
+                            </div>
+
+                            <div class="course-image-content">
+                                <span class="course-icon">📚</span>
+
+                                <span class="course-image-title">
+                                    @course.Title
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <!-- Course Information -->
+                        <div class="course-body">
+
+                            <h2>
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId">
+                                    @course.Title
+                                </a>
+                            </h2>
+
+                            <p class="course-description">
+                                @(course.Description ??
+                                                            "Learn practical skills with this course.")
+                        </p>
+
+                            <p class="course-instructor">
+                                <span>👤</span>
+                                Professional Instructor
+                            </p>
+
+                            <div class="course-rating">
+                                <strong>4.8</strong>
+                                <span>★★★★★</span>
+                                <small>(120)</small>
+                            </div>
+
+                            <div class="course-price">
+                                <strong>
+                                    @course.Price.ToString("C")
+                                </strong>
+                            </div>
+
+                            <!-- Course Actions -->
+                            <div class="course-actions">
+
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn-view">
+                                    View Course
+                                </a>
+
+                                <a asp-page="/Courses/Edit"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn-edit">
+                                    Edit
+                                </a>
+
+                                <form method="post"
+                                      asp-page-handler="Delete"
+                                      asp-route-id="@course.CourseId"
+                                      style="display:inline;"
+                                      onsubmit="return confirm('Are you sure you want to delete this course?');">
+
+                                    <button type="submit"
+                                            class="btn btn-outline-danger">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                                }
+
+                @if (Model.Courses.Count == 0)
+                {
+                    <div class="empty-courses">
+
+                        <div class="empty-icon">📚</div>
+
+                        <h3>No courses yet</h3>
+
+                        <p>
+                            Start by creating your first course.
+                        </p>
+
+                        <a asp-page="/Courses/Create"
+                           class="btn-primary">
+                            Create Course
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+        </main>
+
+    </div>
+    
+
+</div>

@@ -1,0 +1,89 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Auth.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-icon">🎓</div>
+
+            <span class="courses-eyebrow">
+                CREATE ACCOUNT
+            </span>
+
+            <h1>Join LearnHub</h1>
+
+            <p>
+                Create your account and start learning.
+            </p>
+
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success">
+                @Model.SuccessMessage
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="auth-error">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <form method="post">
+
+            <div class="auth-field">
+                <label asp-for="Register.FullName"></label>
+                <input asp-for="Register.FullName" />
+                <span asp-validation-for="Register.FullName"
+                      class="validation-message"></span>
+            </div>
+
+            <div class="auth-field">
+                <label asp-for="Register.Email"></label>
+                <input asp-for="Register.Email" />
+                <span asp-validation-for="Register.Email"
+                      class="validation-message"></span>
+            </div>
+
+            <div class="auth-field">
+                <label asp-for="Register.Password"></label>
+                <input asp-for="Register.Password"
+                       type="password" />
+                <span asp-validation-for="Register.Password"
+                      class="validation-message"></span>
+            </div>
+
+            <button type="submit"
+                    class="auth-submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            <span>Already have an account?</span>
+
+            <a asp-page="/Auth/Login">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

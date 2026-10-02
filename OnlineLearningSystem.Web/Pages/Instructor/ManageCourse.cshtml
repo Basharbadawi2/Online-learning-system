@@ -1,0 +1,159 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Instructor.ManageCourseModel
+
+@{
+    ViewData["Title"] = "Manage Course";
+}
+
+<div class="container py-5">
+
+    
+    <!-- Back -->
+    <div class="mb-4">
+        <a asp-page="./Courses"
+           class="text-decoration-none">
+            ← Back to My Courses
+        </a>
+    </div>
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-start mb-5">
+
+        <div>
+            <span class="text-primary fw-semibold">
+                COURSE MANAGEMENT
+            </span>
+
+            <h1 class="fw-bold mt-2 mb-2">
+                @Model.Course?.Title
+            </h1>
+
+            <p class="text-muted mb-0">
+                Manage your course content, lessons, and quizzes.
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Edit"
+           asp-route-id="@Model.Course?.CourseId"
+           class="btn btn-outline-primary">
+            Edit Course
+        </a>
+
+    </div>
+
+    <!-- Course Overview -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <div class="text-muted small">
+                        STATUS
+                    </div>
+
+                    <h4 class="fw-bold mt-2">
+                        @(Model.Course?.IsPublished == true
+                                                ? "Published"
+                                                : "Draft")
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <div class="text-muted small">
+                        PRICE
+                    </div>
+
+                    <h4 class="fw-bold mt-2">
+                        @Model.Course?.Price.ToString("C")
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <div class="text-muted small">
+                        COURSE ID
+                    </div>
+
+                    <h4 class="fw-bold mt-2">
+                        #@Model.Course?.CourseId
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Course Description -->
+    <div class="card border-0 shadow-sm mb-5">
+
+        <div class="card-body p-4">
+
+            <h3 class="fw-bold mb-3">
+                Course Description
+            </h3>
+
+            <p class="text-muted mb-0">
+                @(string.IsNullOrWhiteSpace(Model.Course?.Description)
+                                ? "No description available."
+                                : Model.Course.Description)
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Course Content -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-1">
+                Course Content
+            </h2>
+
+            <p class="text-muted mb-0">
+                Organize your course into modules and lessons.
+            </p>
+        </div>
+
+        <button class="btn btn-primary">
+            + Add Module
+        </button>
+
+    </div>
+
+    <!-- Empty Content -->
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body text-center py-5">
+
+            <div style="font-size: 60px;">
+                📚
+            </div>
+
+            <h3 class="fw-bold mt-3">
+                No modules yet
+            </h3>
+
+            <p class="text-muted mx-auto"
+               style="max-width: 500px;">
+                Start building your course by adding your first module.
+                You can then add lessons and quizzes inside each module.
+            </p>
+
+            <button class="btn btn-primary mt-3">
+                + Add Your First Module
+            </button>
+
+        </div>
+
+    </div>
+    
+
+</div>

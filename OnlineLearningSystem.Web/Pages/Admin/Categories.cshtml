@@ -1,0 +1,225 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Admin.CategoriesModel
+
+@{
+    ViewData["Title"] = "Manage Categories";
+}
+
+<div class="container py-5">
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <span class="text-uppercase text-primary fw-semibold small">
+                ADMINISTRATION
+            </span>
+
+            <h1 class="fw-bold mb-2">
+                Manage Categories
+            </h1>
+
+            <p class="text-muted mb-0">
+                Organize courses into categories for easier discovery.
+            </p>
+        </div>
+
+        <a asp-page="/Admin/Dashboard"
+           class="btn btn-outline-secondary">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- Statistics -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Total Categories
+                    </p>
+
+                    <h2 class="fw-bold mb-0">
+                        @Model.Categories.Count
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Organization
+                    </p>
+
+                    <h2 class="fw-bold mb-0">
+                        Active
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Management
+                    </p>
+
+                    <h2 class="fw-bold mb-0">
+                        Ready
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Categories -->
+    @if (!Model.Categories.Any())
+    {
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center py-5">
+
+                <div style="font-size: 65px;">
+                    🗂️
+                </div>
+
+                <h3 class="fw-bold mt-3">
+                    No categories found
+                </h3>
+
+                <p class="text-muted">
+                    Create categories to organize your courses.
+                </p>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body p-0">
+
+                <div class="p-4 border-bottom">
+
+                    <h4 class="fw-bold mb-1">
+                        All Categories
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Manage the categories available on LearnHub.
+                    </p>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle mb-0">
+
+                        <thead class="table-light">
+
+                            <tr>
+
+                                <th class="px-4">
+                                    #
+                                </th>
+
+                                <th>
+                                    Category Name
+                                </th>
+
+                                <th class="text-end px-4">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            @foreach (var category in Model.Categories)
+                            {
+                                <tr>
+
+                                    <td class="px-4">
+                                        @category.CategoryId
+                                    </td>
+
+
+                                    <td>
+
+                                        <div class="fw-semibold">
+                                            @category.Name
+                                        </div>
+
+                                    </td>
+
+
+                                    <td class="text-end px-4">
+
+                                        <a asp-page="/Categories/Details"
+                                           asp-route-id="@category.CategoryId"
+                                           class="btn btn-sm btn-outline-primary">
+                                            View
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+
+    <div class="mt-4">
+
+        <a asp-page="/Admin/Dashboard"
+           class="text-decoration-none">
+            ← Back to Admin Dashboard
+        </a>
+
+    </div>
+    
+
+</div>

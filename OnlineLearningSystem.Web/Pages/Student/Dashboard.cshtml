@@ -1,0 +1,209 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Student.DashboardModel
+
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<div class="student-dashboard">
+
+    <!-- Header -->
+    <div class="student-header">
+
+        <div>
+            <span class="courses-eyebrow">
+                STUDENT AREA
+            </span>
+
+            <h1>Welcome back 👋</h1>
+
+            <p>
+                Continue your learning journey and keep making progress.
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Index"
+           class="student-primary-btn">
+            Explore Courses
+        </a>
+
+    </div>
+
+
+    <!-- Statistics -->
+    <div class="student-stats">
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon">📚</div>
+
+            <div>
+                <span>Enrolled Courses</span>
+                <strong>@Model.TotalCourses</strong>
+            </div>
+        </div>
+
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon">📈</div>
+
+            <div>
+                <span>Average Progress</span>
+                <strong>@Model.AverageProgress.ToString("0")%</strong>
+            </div>
+        </div>
+
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon">🎓</div>
+
+            <div>
+                <span>Completed Courses</span>
+                <strong>
+                    @Model.Enrollments.Count(
+                        e => e.ProgressPercent >= 100)
+                </strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- My Courses -->
+    <div class="student-section">
+
+        <div class="student-section-header">
+
+            <div>
+                <span class="courses-eyebrow">
+                    MY LEARNING
+                </span>
+
+                <h2>Continue Learning</h2>
+            </div>
+
+            <a asp-page="/Courses/Index">
+                Browse all courses →
+            </a>
+
+        </div>
+
+
+        @if (Model.Enrollments.Any())
+        {
+            <div class="student-course-grid">
+
+                @foreach (var enrollment in Model.Enrollments)
+                {
+                    <div class="student-course-card">
+
+                        <div class="student-course-icon">
+                            📘
+                        </div>
+
+                        <div class="student-course-content">
+
+                            <h3>
+                                @enrollment.Course?.Title
+                            </h3>
+
+                            <p>
+                                @enrollment.Course?.Description
+                            </p>
+
+
+                            <div class="student-progress-header">
+
+                                <span>Progress</span>
+
+                                <strong>
+                                    @enrollment.ProgressPercent.ToString("0")%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="student-progress">
+
+                                <div class="student-progress-bar"
+                                     style="width: @enrollment.ProgressPercent%">
+                                </div>
+
+                            </div>
+
+
+                            <a asp-page="/Courses/Details"
+                               asp-route-id="@enrollment.CourseId"
+                               class="student-course-btn">
+
+                                Continue Learning
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="student-empty">
+
+                <div class="student-empty-icon">
+                    📚
+                </div>
+
+                <h3>No courses yet</h3>
+
+                <p>
+                    You haven't enrolled in any courses yet.
+                    Start learning today.
+                </p>
+
+                <a asp-page="/Courses/Index"
+                   class="student-primary-btn">
+                    Explore Courses
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+
+    <!-- Quick Actions -->
+    <div class="student-quick-actions">
+
+        <a asp-page="/Courses/Index"
+           class="student-action-card">
+
+            <span>📚</span>
+
+            <div>
+                <h3>Explore Courses</h3>
+                <p>Discover something new to learn.</p>
+            </div>
+
+            <strong>→</strong>
+
+        </a>
+
+
+        <a asp-page="/Student/Certificates"
+           class="student-action-card">
+
+            <span>🏆</span>
+
+            <div>
+                <h3>My Certificates</h3>
+                <p>View your earned certificates.</p>
+            </div>
+
+            <strong>→</strong>
+
+        </a>
+
+    </div>
+
+</div>

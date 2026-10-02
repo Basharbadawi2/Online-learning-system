@@ -1,0 +1,322 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="home-page">
+
+    <!-- Hero -->
+    <section class="home-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-eyebrow">
+                LEARN • GROW • SUCCEED
+            </span>
+
+            <h1>
+                Learn skills that
+                <span>move you forward.</span>
+            </h1>
+
+            <p>
+                Discover practical courses, learn from experienced
+                instructors, and build the skills you need for your future.
+            </p>
+
+            <div class="hero-actions">
+
+                <a asp-page="/Courses/Index"
+                   class="btn-primary">
+                    Explore Courses →
+                </a>
+
+                <a href="#categories"
+                   class="btn-secondary">
+                    Browse Categories
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="hero-card hero-card-main">
+                <span class="hero-card-icon">🎓</span>
+
+                <div>
+                    <strong>Keep Learning</strong>
+                    <small>Build your future</small>
+                </div>
+            </div>
+
+            <div class="hero-card hero-card-small">
+                <strong>100+</strong>
+                <span>Learning resources</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Stats -->
+    <section class="home-stats">
+
+        <div class="stat-item">
+            <strong>@Model.CourseCount</strong>
+            <span>Courses</span>
+        </div>
+
+        <div class="stat-item">
+            <strong>@Model.Categories.Count</strong>
+            <span>Categories</span>
+        </div>
+
+        <div class="stat-item">
+            <strong>@Model.FeaturedCourses.Count</strong>
+            <span>Published</span>
+        </div>
+
+        <div class="stat-item">
+            <strong>24/7</strong>
+            <span>Learning</span>
+        </div>
+
+    </section>
+
+
+    <!-- Categories -->
+    <section class="home-section" id="categories">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="courses-eyebrow">
+                    EXPLORE
+                </span>
+
+                <h2>Learn by category</h2>
+
+                <p>
+                    Find the right learning path for your goals.
+                </p>
+            </div>
+
+            <a asp-page="/Courses/Index"
+               class="section-link">
+                View all courses →
+            </a>
+
+        </div>
+
+
+        <div class="home-category-grid">
+
+            @if (Model.Categories.Any())
+            {
+                @foreach (var category in Model.Categories)
+                {
+                    <a asp-page="/Categories/Details"
+                       asp-route-id="@category.CategoryId"
+                       class="home-category-card">
+
+                        <span>📚</span>
+
+                        <div>
+                            <h3>@category.Name</h3>
+                            <p>Explore courses in this category.</p>
+                        </div>
+
+                    </a>
+                }
+            }
+            else
+            {
+                <a asp-page="/Courses/Index"
+                   class="home-category-card">
+
+                    <span>📚</span>
+
+                    <div>
+                        <h3>Explore Courses</h3>
+                        <p>Browse all available courses.</p>
+                    </div>
+
+                </a>
+            }
+
+        </div>
+
+    </section>
+
+
+    <!-- Featured Courses -->
+    <section class="home-featured">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="courses-eyebrow">
+                    FEATURED COURSES
+                </span>
+
+                <h2>Popular courses to get you started</h2>
+
+                <p>
+                    Hand-picked courses from our instructors.
+                </p>
+            </div>
+
+            <a asp-page="/Courses/Index"
+               class="section-link">
+                Explore Courses →
+            </a>
+
+        </div>
+
+
+        @if (Model.FeaturedCourses.Any())
+        {
+            <div class="course-grid">
+
+                @foreach (var course in Model.FeaturedCourses)
+                {
+                    <div class="course-card">
+
+                        <div class="course-image">
+                            <span class="course-icon">📚</span>
+                        </div>
+
+                        <div class="course-body">
+
+                            <h2>
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId">
+                                    @course.Title
+                                </a>
+                            </h2>
+
+                            <p class="course-description">
+                                @(string.IsNullOrWhiteSpace(course.Description)
+                                            ? "No description available."
+                                            : course.Description)
+                            </p>
+
+                            <div class="course-price">
+                                @course.Price.ToString("C")
+                            </div>
+
+                            <div class="course-actions">
+
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn-view">
+                                    View Course
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="home-featured-card">
+                <span class="featured-icon">📚</span>
+                <h3>Courses coming soon</h3>
+                <p>
+                    New courses are being prepared by our instructors.
+                </p>
+            </div>
+        }
+
+    </section>
+
+    <!-- Benefits -->
+    <section class="home-featured">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="courses-eyebrow">
+                    START LEARNING
+                </span>
+
+                <h2>Build skills for your future</h2>
+
+                <p>
+                    Learn at your own pace with practical,
+                    career-focused courses.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="home-featured-grid">
+
+            <div class="home-featured-card">
+                <span class="featured-icon">📚</span>
+                <h3>Learn at your pace</h3>
+                <p>
+                    Study whenever you want and continue
+                    learning from where you stopped.
+                </p>
+            </div>
+
+
+            <div class="home-featured-card">
+                <span class="featured-icon">🎯</span>
+                <h3>Practical skills</h3>
+                <p>
+                    Focus on useful knowledge that you
+                    can apply to real projects.
+                </p>
+            </div>
+
+
+            <div class="home-featured-card">
+                <span class="featured-icon">🏆</span>
+                <h3>Track your progress</h3>
+                <p>
+                    Follow your learning journey and
+                    work toward completing your courses.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="home-cta">
+
+        <div>
+            <span class="courses-eyebrow">
+                YOUR JOURNEY STARTS HERE
+            </span>
+
+            <h2>Ready to start learning?</h2>
+
+            <p>
+                Explore our courses and take the next step
+                toward your goals.
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Index"
+           class="btn-primary">
+            Explore Courses →
+        </a>
+
+    </section>
+
+</div>

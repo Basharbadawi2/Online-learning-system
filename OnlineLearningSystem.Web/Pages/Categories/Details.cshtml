@@ -1,0 +1,117 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Categories.DetailsModel
+
+<div class="courses-page">
+
+    @if (Model.Category != null)
+    {
+        <div class="courses-header">
+
+            <div>
+                <span class="courses-eyebrow">
+                    CATEGORY
+                </span>
+
+                <h1>@Model.Category.Name</h1>
+
+                <p>
+                    Explore courses in @Model.Category.Name.
+                </p>
+            </div>
+
+            <a asp-page="/Categories/Index"
+               class="btn-primary">
+                ← Back to Categories
+            </a>
+
+        </div>
+
+        <div class="courses-toolbar">
+            <div>
+                <strong>@Model.Courses.Count</strong>
+                <span>courses available</span>
+            </div>
+        </div>
+
+        @if (Model.Courses.Count > 0)
+        {
+            <div class="course-grid">
+
+                @foreach (var course in Model.Courses)
+                {
+                    <article class="course-card">
+
+                        <div class="course-image">
+
+                            <div class="course-image-content">
+                                <span class="course-icon">
+                                    📚
+                                </span>
+
+                                <span class="course-image-title">
+                                    @course.Title
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="course-body">
+
+                            <h2>
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId">
+                                    @course.Title
+                                </a>
+                            </h2>
+
+                            <p class="course-description">
+                                @(course.Description ??
+                                                    "Learn practical skills with this course.")
+                </p>
+
+                            <div class="course-price">
+                                <strong>
+                                    @course.Price.ToString("C")
+                                </strong>
+                            </div>
+
+                            <div class="course-actions">
+
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn-view">
+                                    View Course
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="empty-courses">
+
+                <div class="empty-icon">📚</div>
+
+                <h3>No courses in this category yet</h3>
+
+                <p>
+                    There are currently no courses available
+                    in @Model.Category.Name.
+                </p>
+
+                <a asp-page="/Courses/Index"
+                   class="btn-primary">
+                    Browse All Courses
+                </a>
+
+            </div>
+        }
+    }
+
+</div>

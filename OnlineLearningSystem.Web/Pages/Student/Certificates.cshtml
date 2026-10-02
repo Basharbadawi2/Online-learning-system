@@ -1,0 +1,53 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Student.CertificatesModel
+
+@{
+    ViewData["Title"] = "My Certificates";
+}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="mb-5">
+        <h1 class="fw-bold mb-2">My Certificates</h1>
+        <p class="text-muted mb-0">
+            View and manage the certificates you've earned.
+        </p>
+    </div>
+
+    <!-- Empty State -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body text-center py-5">
+
+            <div style="font-size: 70px;">
+                🏆
+            </div>
+
+            <h3 class="fw-bold mt-4">
+                No certificates yet
+            </h3>
+
+            <p class="text-muted mx-auto"
+               style="max-width: 500px;">
+                Complete your enrolled courses to earn certificates.
+                Your certificates will appear here once you've
+                successfully completed a course.
+            </p>
+
+            <a asp-page="/Student/MyCourses"
+               class="btn btn-primary mt-3">
+                View My Courses
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Quick Action -->
+    <div class="mt-4">
+        <a asp-page="/Courses/Index"
+           class="text-decoration-none">
+            ← Explore more courses
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,220 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Instructor.CreateCourseModel
+
+@{
+    ViewData["Title"] = "Create Course";
+}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="mb-5">
+
+        <a asp-page="/Instructor/Courses"
+           class="text-decoration-none">
+            ← Back to My Courses
+        </a>
+
+        <div class="mt-4">
+            <span class="text-uppercase text-primary fw-semibold small">
+                INSTRUCTOR
+            </span>
+
+            <h1 class="fw-bold mb-2">
+                Create a New Course
+            </h1>
+
+            <p class="text-muted mb-0">
+                Create a course and start sharing your knowledge with students.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- Form -->
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="post">
+
+                        <!-- Validation -->
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-4">
+                        </div>
+
+
+                        <!-- Course Title -->
+                        <div class="mb-4">
+
+                            <label asp-for="Course.Title"
+                                   class="form-label fw-semibold">
+                                Course Title
+                            </label>
+
+                            <input asp-for="Course.Title"
+                                   class="form-control form-control-lg"
+                                   placeholder="e.g. ASP.NET Core Web API" />
+
+                            <span asp-validation-for="Course.Title"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="mb-4">
+
+                            <label asp-for="Course.Description"
+                                   class="form-label fw-semibold">
+                                Description
+                            </label>
+
+                            <textarea asp-for="Course.Description"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Describe what students will learn in this course...">
+                        </textarea>
+
+                            <span asp-validation-for="Course.Description"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Price + Category -->
+                        <div class="row">
+
+                            <!-- Price -->
+                            <div class="col-md-6 mb-4">
+
+                                <label asp-for="Course.Price"
+                                       class="form-label fw-semibold">
+                                    Price
+                                </label>
+
+                                <div class="input-group">
+
+                                    <input asp-for="Course.Price"
+                                           class="form-control"
+                                           type="number"
+                                           step="0.01"
+                                           min="0"
+                                           placeholder="500" />
+
+                                    <span class="input-group-text">
+                                        EGP
+                                    </span>
+
+                                </div>
+
+                                <span asp-validation-for="Course.Price"
+                                      class="text-danger">
+                                </span>
+
+                            </div>
+
+
+                            <!-- Category -->
+                            <div class="col-md-6 mb-4">
+
+                                <label asp-for="Course.CategoryId"
+                                       class="form-label fw-semibold">
+                                    Category
+                                </label>
+
+                                <select asp-for="Course.CategoryId"
+                                        class="form-select">
+
+                                    <option value="">
+                                        Select a category
+                                    </option>
+
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        <option value="@category.CategoryId">
+                                            @category.Name
+                                        </option>
+                                    }
+
+                                </select>
+
+                                <span asp-validation-for="Course.CategoryId"
+                                      class="text-danger">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Published -->
+                        <div class="card bg-light border-0 mb-4">
+
+                            <div class="card-body">
+
+                                <div class="form-check form-switch">
+
+                                    <input asp-for="Course.IsPublished"
+                                           class="form-check-input"
+                                           type="checkbox" />
+
+                                    <label asp-for="Course.IsPublished"
+                                           class="form-check-label fw-semibold">
+                                        Publish this course
+                                    </label>
+
+                                </div>
+
+                                <small class="text-muted">
+                                    Published courses can be viewed by students.
+                                    You can keep the course as a draft while preparing it.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Instructor -->
+                        <input asp-for="Course.InstructorId"
+                               type="hidden" />
+
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a asp-page="/Instructor/Courses"
+                               class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                Create Course
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

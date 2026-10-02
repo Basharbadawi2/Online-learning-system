@@ -1,0 +1,57 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Courses.DetailsModel
+
+<div class="courses-page">
+
+    <div class="courses-header">
+        <div>
+            <span class="courses-eyebrow">COURSE DETAILS</span>
+
+            <h1>@Model.Course?.Title</h1>
+
+            <p>
+                @Model.Course?.Description
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Index" class="btn-primary">
+            ← Back to Courses
+        </a>
+    </div>
+
+    <div class="course-card">
+
+        <div class="course-image">
+            <div class="course-image-content">
+                <span class="course-icon">📚</span>
+
+                <span class="course-image-title">
+                    @Model.Course?.Title
+                </span>
+            </div>
+        </div>
+
+        <div class="course-body">
+
+            <h2>@Model.Course?.Title</h2>
+
+            <p class="course-description">
+                @Model.Course?.Description
+            </p>
+
+            <p class="course-price">
+                <strong>
+                    @Model.Course?.Price.ToString("C")
+                </strong>
+            </p>
+
+            <p>
+                <strong>Published:</strong>
+                @(Model.Course?.IsPublished == true ? "Yes" : "No")
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

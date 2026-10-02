@@ -1,0 +1,68 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Categories.IndexModel
+
+<div class="courses-page">
+
+    <div class="courses-header">
+        <div>
+            <span class="courses-eyebrow">EXPLORE • DISCOVER • LEARN</span>
+            <h1>Course Categories</h1>
+            <p>Choose a category and find the right courses for you.</p>
+        </div>
+
+        <a asp-page="/Courses/Index" class="btn-primary">
+            ← Back to Courses
+        </a>
+    </div>
+
+    <div class="course-grid">
+
+        @foreach (var category in Model.Categories)
+        {
+            <article class="course-card">
+
+                <div class="course-image">
+                    <div class="course-image-content">
+                        <span class="course-icon">📚</span>
+                    </div>
+                </div>
+
+                <div class="course-body">
+
+                    <h2>@category.Name</h2>
+
+                    <p class="course-description">
+                        Explore courses in @category.Name.
+                    </p>
+
+                    <div class="course-actions">
+
+                        <a asp-page="/Categories/Details"
+                           asp-route-id="@category.CategoryId"
+                           class="btn-view">
+                            View Category
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+        }
+
+        @if (Model.Categories.Count == 0)
+        {
+            <div class="empty-courses">
+
+                <div class="empty-icon">📚</div>
+
+                <h3>No categories yet</h3>
+
+                <p>Create a category to organize your courses.</p>
+
+            </div>
+        }
+
+    </div>
+
+</div>

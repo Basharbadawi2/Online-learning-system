@@ -1,0 +1,6 @@
+@Online_learning_system_HostAddress = http://localhost:5232
+
+GET {{Online_learning_system_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

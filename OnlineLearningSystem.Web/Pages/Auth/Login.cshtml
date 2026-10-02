@@ -1,0 +1,94 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Auth.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-icon">
+                🎓
+            </div>
+
+            <span class="courses-eyebrow">
+                WELCOME BACK
+            </span>
+
+            <h1>Sign in to LearnHub</h1>
+
+            <p>
+                Continue your learning journey.
+            </p>
+
+        </div>
+
+        @if (Model.ErrorMessage != null)
+        {
+            <div class="auth-error">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <form method="post">
+
+            <div class="auth-field">
+
+                <label asp-for="Login.Email">
+                    Email
+                </label>
+
+                <input asp-for="Login.Email"
+                       type="email"
+                       placeholder="Enter your email" />
+
+                <span asp-validation-for="Login.Email"
+                      class="validation-message">
+                </span>
+
+            </div>
+
+            <div class="auth-field">
+
+                <label asp-for="Login.Password">
+                    Password
+                </label>
+
+                <input asp-for="Login.Password"
+                       type="password"
+                       placeholder="Enter your password" />
+
+                <span asp-validation-for="Login.Password"
+                      class="validation-message">
+                </span>
+
+            </div>
+
+            <button type="submit"
+                    class="auth-submit">
+                Login
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            <span>Don't have an account?</span>
+
+            <a asp-page="/Auth/Register">
+                Create an account
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

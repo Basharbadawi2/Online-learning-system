@@ -1,0 +1,190 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Instructor.ProfileModel
+
+@{
+    ViewData["Title"] = "Instructor Profile";
+}
+
+<div class="container py-5">
+
+    
+    <!-- Header -->
+    <div class="mb-5">
+
+        <a asp-page="./Dashboard"
+           class="text-decoration-none">
+            ← Back to Dashboard
+        </a>
+
+        <div class="mt-4">
+            <span class="text-primary fw-semibold">
+                INSTRUCTOR PROFILE
+            </span>
+
+            <h1 class="fw-bold mt-2 mb-2">
+                My Profile
+            </h1>
+
+            <p class="text-muted">
+                Manage your instructor information and professional profile.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Profile Card -->
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm text-center h-100">
+
+                <div class="card-body p-4">
+
+                    <!-- Avatar -->
+                    <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
+                         style="width:110px;height:110px;font-size:42px;font-weight:700;">
+                        @(string.IsNullOrEmpty(Model.FullName) ? "?" : Model.FullName.Substring(0, 1))
+                    </div>
+
+                    <h3 class="fw-bold mb-1">
+                        @Model.FullName
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        @Model.Specialization
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-primary w-100">
+                        Edit Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Information -->
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        Professional Information
+                    </h3>
+
+                    <div class="mb-4">
+
+                        <label class="text-muted small">
+                            FULL NAME
+                        </label>
+
+                        <p class="fw-semibold fs-5 mb-0">
+                            @Model.FullName
+                        </p>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="text-muted small">
+                            EMAIL
+                        </label>
+
+                        <p class="fw-semibold fs-5 mb-0">
+                            @Model.Email
+                        </p>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="text-muted small">
+                            SPECIALIZATION
+                        </label>
+
+                        <p class="fw-semibold fs-5 mb-0">
+                            @Model.Specialization
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <label class="text-muted small">
+                            BIO
+                        </label>
+
+                        <p class="text-muted mb-0">
+                            @Model.Bio
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Statistics -->
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        Teaching Statistics
+                    </h3>
+
+                    <div class="row text-center">
+
+                        <div class="col-md-4">
+
+                            <div class="fs-2 fw-bold text-primary">
+                                @Model.CoursesCount
+                            </div>
+
+                            <div class="text-muted">
+                                Courses
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="fs-2 fw-bold text-primary">
+                                0
+                            </div>
+
+                            <div class="text-muted">
+                                Students
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="fs-2 fw-bold text-primary">
+                                0
+                            </div>
+
+                            <div class="text-muted">
+                                Reviews
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+
+</div>

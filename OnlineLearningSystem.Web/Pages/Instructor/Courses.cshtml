@@ -1,0 +1,156 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Instructor.CoursesModel
+
+@{
+    ViewData["Title"] = "My Courses";
+}
+
+<div class="container py-5">
+
+    
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <h1 class="fw-bold mb-2">
+                My Courses
+            </h1>
+
+            <p class="text-muted mb-0">
+                Create, edit, and manage the courses you teach.
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Create"
+           class="btn btn-primary px-4">
+            + Create Course
+        </a>
+
+    </div>
+
+    @if (!Model.Courses.Any())
+    {
+        <!-- Empty State -->
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center py-5">
+
+                <div style="font-size: 70px;">
+                    📚
+                </div>
+
+                <h3 class="fw-bold mt-4">
+                    No courses yet
+                </h3>
+
+                <p class="text-muted mx-auto"
+                   style="max-width: 500px;">
+                    You haven't created any courses yet.
+                    Start by creating your first course and
+                    share your knowledge with students.
+                </p>
+
+                <a asp-page="/Courses/Create"
+                   class="btn btn-primary mt-3 px-4">
+                    + Create Your First Course
+                </a>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <!-- Course Count -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <p class="text-muted mb-0">
+                <strong>@Model.Courses.Count</strong>
+                course(s)
+            </p>
+
+        </div>
+
+        <!-- Courses -->
+        <div class="row g-4">
+
+            @foreach (var course in Model.Courses)
+            {
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card border-0 shadow-sm h-100">
+
+                        <!-- Course Header -->
+                        <div class="card-body p-4 d-flex flex-column">
+
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+
+                                <span class="badge
+                                        @(course.IsPublished
+                                                                          ? "bg-success"
+                                                                          : "bg-secondary")">
+
+                                    @(course.IsPublished
+                                                                ? "Published"
+                                                                : "Draft")
+
+                                </span>
+
+                                <span class="fw-bold">
+                                    @course.Price
+                                </span>
+
+                            </div>
+
+                            <!-- Title -->
+                            <h4 class="fw-bold mb-3">
+                                @course.Title
+                            </h4>
+
+                            <!-- Description -->
+                            <p class="text-muted flex-grow-1">
+                                @(string.IsNullOrWhiteSpace(course.Description)
+                                                        ? "No description available."
+                                                        : course.Description)
+                    </p>
+
+                            <hr />
+
+                            <!-- Actions -->
+                        
+                         
+                            <div class="d-flex gap-2">
+
+                                <a asp-page="/Courses/Details"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn btn-outline-primary flex-grow-1">
+                                    View
+                                </a>
+
+                                <a asp-page="/Courses/Edit"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn btn-primary flex-grow-1">
+                                    Edit
+                                </a>
+
+                                <a asp-page="/Instructor/ManageCourse"
+                                   asp-route-id="@course.CourseId"
+                                   class="btn btn-dark flex-grow-1">
+                                    Manage
+                                </a>
+                               
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                }
+
+        </div>
+    }
+    
+
+</div>

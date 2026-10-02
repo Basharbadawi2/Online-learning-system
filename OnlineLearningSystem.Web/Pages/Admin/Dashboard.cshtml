@@ -1,0 +1,334 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Admin.DashboardModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container py-5">
+
+    
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <span class="text-primary fw-semibold">
+                ADMINISTRATION
+            </span>
+
+            <h1 class="fw-bold mt-2 mb-2">
+                Admin Dashboard
+            </h1>
+
+            <p class="text-muted mb-0">
+                Manage your learning platform and monitor its activity.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        TOTAL USERS
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalUsers
+                        </h2>
+
+                        <span style="font-size:32px;">👥</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Registered accounts
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        STUDENTS
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalStudents
+                        </h2>
+
+                        <span style="font-size:32px;">🎓</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Active students
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        INSTRUCTORS
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalInstructors
+                        </h2>
+
+                        <span style="font-size:32px;">👨‍🏫</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Course instructors
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        TOTAL COURSES
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalCourses
+                        </h2>
+
+                        <span style="font-size:32px;">📚</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Courses on the platform
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        ENROLLMENTS
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalEnrollments
+                        </h2>
+
+                        <span style="font-size:32px;">📝</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Student enrollments
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <div class="text-muted small">
+                        PUBLISHED COURSES
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <h2 class="fw-bold mb-0">
+                            @Model.PublishedCourses
+                        </h2>
+
+                        <span style="font-size:32px;">🚀</span>
+                    </div>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        Currently available
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mb-4">
+        <h2 class="fw-bold">
+            Quick Actions
+        </h2>
+
+        <p class="text-muted">
+            Manage the main areas of your platform.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-page="./Users"
+               class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div style="font-size:40px;">👥</div>
+
+                        <h4 class="fw-bold mt-3">
+                            Manage Users
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            View and manage platform users.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-page="./Courses"
+               class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div style="font-size:40px;">📚</div>
+
+                        <h4 class="fw-bold mt-3">
+                            Manage Courses
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            Review and manage courses.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-page="./Categories"
+               class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div style="font-size:40px;">🏷️</div>
+
+                        <h4 class="fw-bold mt-3">
+                            Categories
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            Organize course categories.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-page="./Enrollments"
+               class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div style="font-size:40px;">📊</div>
+
+                        <h4 class="fw-bold mt-3">
+                            Enrollments
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            Monitor student enrollments.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Admin Tips -->
+    <div class="card border-0 shadow-sm mt-5">
+        <div class="card-body p-4">
+
+            <h4 class="fw-bold mb-3">
+                Administration Tips
+            </h4>
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <div class="d-flex gap-3">
+                        <span>🔐</span>
+
+                        <div>
+                            <strong>
+                                Protect user accounts
+                            </strong>
+
+                            <p class="text-muted small mb-0">
+                                Review account activity regularly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="d-flex gap-3">
+                        <span>📚</span>
+
+                        <div>
+                            <strong>
+                                Review course quality
+                            </strong>
+
+                            <p class="text-muted small mb-0">
+                                Keep published courses organized.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="d-flex gap-3">
+                        <span>📈</span>
+
+                        <div>
+                            <strong>
+                                Monitor activity
+                            </strong>
+
+                            <p class="text-muted small mb-0">
+                                Track enrollments and platform growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    
+
+</div>

@@ -1,0 +1,91 @@
+﻿@page
+@model OnlineLearningSystem.Web.Pages.Student.MyCoursesModel
+
+@{
+    ViewData["Title"] = "My Courses";
+}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold">My Courses</h1>
+            <p class="text-muted">
+                Continue your learning journey.
+            </p>
+        </div>
+
+        <a asp-page="/Courses/Index"
+           class="btn btn-primary">
+            Explore Courses
+        </a>
+    </div>
+
+    @if (!Model.Enrollments.Any())
+    {
+        <div class="text-center py-5">
+            <div style="font-size:60px;">📚</div>
+
+            <h3 class="mt-3">No enrolled courses</h3>
+
+            <p class="text-muted">
+                Start learning by enrolling in a course.
+            </p>
+
+            <a asp-page="/Courses/Index"
+               class="btn btn-primary">
+                Browse Courses
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+
+            @foreach (var enrollment in Model.Enrollments)
+            {
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <h4 class="card-title">
+                                @enrollment.Course?.Title
+                            </h4>
+
+                            <p class="text-muted">
+                                @enrollment.Course?.Description
+                            </p>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Progress</span>
+                                <strong>
+                                    @enrollment.ProgressPercent%
+                                </strong>
+                            </div>
+
+                            <div class="progress mb-4">
+                                <div class="progress-bar"
+                                     role="progressbar"
+                                     style="width:@enrollment.ProgressPercent%">
+                                </div>
+                            </div>
+
+                            <a asp-page="/Courses/Details"
+                               asp-route-id="@enrollment.CourseId"
+                               class="btn btn-primary w-100">
+                                Continue Learning
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

@@ -1,0 +1,133 @@
+@page
+@model OnlineLearningSystem.Web.Pages.Admin.CoursesModel
+
+@{
+    ViewData["Title"] = "Manage Courses";
+}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <span class="text-uppercase text-primary fw-semibold small">
+                ADMINISTRATION
+            </span>
+
+            <h1 class="fw-bold mb-2">
+                Manage Courses
+            </h1>
+
+            <p class="text-muted mb-0">
+                Review and manage all courses on the platform.
+            </p>
+        </div>
+
+        <a asp-page="/Admin/Dashboard"
+           class="btn btn-outline-secondary">
+            ← Dashboard
+        </a>
+
+    </div>
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body p-0">
+
+            <div class="p-4 border-bottom">
+                <h4 class="fw-bold mb-1">
+                    All Courses
+                </h4>
+
+                <p class="text-muted mb-0">
+                    <strong>@Model.Courses.Count</strong> course(s) on the platform.
+                </p>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4">#</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th class="text-end px-4">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (!Model.Courses.Any())
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-5">
+                                    No courses have been created yet.
+                                </td>
+                            </tr>
+                        }
+
+                        @foreach (var course in Model.Courses)
+                        {
+                            <tr>
+                                <td class="px-4">
+                                    @course.CourseId
+                                </td>
+
+                                <td>
+                                    <span class="fw-semibold">
+                                        @course.Title
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @course.Price.ToString("C")
+                                </td>
+
+                                <td>
+                                    @if (course.IsPublished)
+                                    {
+                                        <span class="badge bg-success">
+                                            Published
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            Draft
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-end px-4">
+                                    <a asp-page="/Courses/Details"
+                                       asp-route-id="@course.CourseId"
+                                       class="btn btn-sm btn-outline-primary">
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <a asp-page="/Admin/Dashboard"
+           class="text-decoration-none">
+            ← Back to Admin Dashboard
+        </a>
+
+    </div>
+
+</div>
